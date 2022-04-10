@@ -1,14 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
-const dburl = "mongodb+srv://admin:admin@cluster0.8jcys.mongodb.net/crud?retryWrites=true&w=majority";
+require('dotenv').config()
+const username = process.env.USERNAME;
+const password = process.env.PASSWORD;
+const port = process.env.PORT || 9000;
+const dburl = `mongodb+srv://${username}:${password}@cluster0.8jcys.mongodb.net/crud?retryWrites=true&w=majority`;
 
 const app = express();
-
 mongoose.connect(dburl);
-const con = mongoose.connection;
 
-con.on("open", () => {
+mongoose.connection.on("open", () => {
     console.log("db connected");
 });
 
@@ -17,6 +18,6 @@ app.use(express.json());
 const userRouter = require("./routes/users")
 app.use('/users', userRouter)
 
-app.listen(9000, () => {
+app.listen(port, () => {
     console.log("server started")
 });
