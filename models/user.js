@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema({
     gender: {
         type: Number,
         required: true
+    },
+    role: {
+        type: Number,
+        required: true
     }
 
 }, {
