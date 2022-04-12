@@ -23,11 +23,7 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const user = new User({
-        name: req.body.name,
-        tech: req.body.tech,
-        sub: req.body.sub,
-    });
+    const user = new User(req.body);
     try {
         const u1 = await user.save();
         res.send(u1);
@@ -37,22 +33,22 @@ router.post('/', async (req, res) => {
 });
 
 router.patch('/:id', async (req, res) => {
-    try{
+    try {
         const user = await User.findById(req.params.id);
         user.name = req.body.name || user.name
         const user1 = await user.save();
         res.send(user1);
-    }catch(e){
+    } catch (e) {
         res.send('Error ' + e);
     }
 });
 
 router.delete('/:id', async (req, res) => {
-    try{
+    try {
         const user = await User.findById(req.params.id);
         user.deleteOne();
-        res.sent('success');
-    }catch (e){
+        res.send('success');
+    } catch (e) {
         res.send('Error ' + e);
     }
 });

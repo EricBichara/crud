@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    birthdate: {
+    dateOfBirth: {
         type: Date,
         required: true
     },
@@ -23,6 +23,15 @@ const userSchema = new mongoose.Schema({
         type: [WorkExperience],
         default: []
     },
+    isMarried: {
+        type: Boolean,
+        required: true
+    },
+    gender: {
+        type: Number,
+        required: true
+    }
+
 }, {
     collection: 'users'
 })
