@@ -1,19 +1,28 @@
 const mongoose = require("mongoose");
+const Education = require('./education.js');
+const WorkExperience = require('./workExperience.js');
 
 const userSchema = new mongoose.Schema({
-    name: {
+    firstName: {
         type: String,
         required: true
     },
-    tech: {
+    lastName: {
         type: String,
         required: true
     },
-    sub: {
-        type: Boolean,
-        required: true,
-        default: false
-    }
+    birthdate: {
+        type: Date,
+        required: true
+    },
+    education: {
+        type: [Education],
+        default: []
+    },
+    workExperience: {
+        type: [WorkExperience],
+        default: []
+    },
 }, {
     collection: 'users'
 })
