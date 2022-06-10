@@ -15,9 +15,7 @@ mongoose.connection.on("open", () => {
 });
 
 app.use(express.json());
-app.use(cors({
-    origin: '*'
-}))
+app.use(cors());
 
 const userRouter = require("./routes/users")
 app.use('/users', userRouter)
